@@ -1,5 +1,5 @@
 <?php
-    if ($_SESSION["autenticado"] != "SI" || $_SESSION["tipo"]!="admin") {
+    if (!isset($_SESSION["autenticado"]) || $_SESSION["autenticado"] != "SI" || $_SESSION["tipo"]!="admin") {
             echo "<script>
                       alert('Se necesitan permisos de administrador para acceder a esta funcionalidad');
                       window.location.href='Layout.php';

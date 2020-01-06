@@ -1,11 +1,18 @@
-<?php
+<?php 
 session_start();
-if ($_SESSION["autenticado"] != "SI" || $_SESSION["tipo"]!="admin") {
+
+if (!isset($_SESSION["autenticado"]) || $_SESSION["autenticado"] != "SI" || $_SESSION["tipo"]!="normal") {
+            //si no existe, envio a la página de autentificación
             echo "<script>
-                      alert(''Se necesitan permisos de administrador para acceder a esta funcionalidad'');
+                      alert('No tienes permisos de administrador');
                       window.location.href='Layout.php';
-                      </script>";  }
+                      </script>";  
+            //además salgo de este script
+        
+            exit();        
+}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +21,11 @@ if ($_SESSION["autenticado"] != "SI" || $_SESSION["tipo"]!="admin") {
 <body>
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
-    <div>
-      <?php
 
-     	if ($_SESSION["autenticado"] != "SI" || $_SESSION["tipo"]!="admin") {
-			//si no existe, envio a la página de autentificación
-			header("Location: Layout.php");
-			//además salgo de este script
-		
-			exit();
-        
-		} else{
+<div>
+  <?php
+    
+     
         	include 'DbConfig.php';
         	//Creamos la conexion con la BD.
         	$link = mysqli_connect($server,$user,$pass,$basededatos);
@@ -45,7 +46,7 @@ if ($_SESSION["autenticado"] != "SI" || $_SESSION["tipo"]!="admin") {
         }
         echo "</table>";
         mysqli_close($link);
-       } 
+       
     ?>
     </div>
   </section>

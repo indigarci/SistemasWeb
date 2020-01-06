@@ -57,7 +57,7 @@ session_start();
                     }else{
 
                       $_SESSION['email'] = $email;
-                      $_SESSION['autenticado'] = "SI";
+                      $_SESSION["autenticado"] = "SI";
                       
                       if ($_SESSION['email'] == "admin@ehu.es"){
 

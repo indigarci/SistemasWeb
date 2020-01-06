@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-if ($_SESSION["autenticado"] != "SI" || $_SESSION["tipo"]!="normal") {
+if (!isset($_SESSION["autenticado"]) || $_SESSION["autenticado"] != "SI" || $_SESSION["tipo"]!="normal") {
             //si no existe, envio a la página de autentificación
             echo "<script>
                       alert('No puedes acceder a esta funcionalidad');
@@ -21,6 +21,8 @@ if ($_SESSION["autenticado"] != "SI" || $_SESSION["tipo"]!="normal") {
     <script src="../js/ValidateFieldsQuestion.js"></script>
     <script src="../js/ShowQuestionsAjax.js"></script>
     <script src="../js/AddQuestionsAjax.js"></script>
+    <script src="../js/CountQuestions.js"></script>
+
 
    
 </head>
@@ -28,6 +30,8 @@ if ($_SESSION["autenticado"] != "SI" || $_SESSION["tipo"]!="normal") {
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
+         <p> Mis preguntas / Preguntas totales </p>
+        <div id='preg'> </div>
         <form action="AddQuestionWithImage.php" name="formquestion" id="formquestion" method="post" enctype="multipart/form-data">
             <p>Introduce tu dirección de correo: *</p>
             <?php
@@ -50,6 +54,8 @@ if ($_SESSION["autenticado"] != "SI" || $_SESSION["tipo"]!="normal") {
             </select>
             <p>Introduce el tema de la pregunta: *</p>
             <input type="text" size="60" id="temaPregunta" name="temaPregunta">
+
+            <p> <input type="file" id="file" accept="image/*" name="file"> </p>
             <!-- <div id="selector">
             <input type="file" id="file" accept="image/*" name="file"> 
             </div> -->
